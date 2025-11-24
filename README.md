@@ -1,7 +1,7 @@
 # PROJECT: CAFÉ CLOUD
 ### *The Evolving Café Architecture*
 
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws) ![Status](https://img.shields.io/badge/STATUS-V1%20COMPLETE-success?style=for-the-badge) ![Operator](https://img.shields.io/badge/OPERATOR-HIMANSHU-blue?style=for-the-badge)
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws) ![Status](https://img.shields.io/badge/STATUS-V2%20COMPLETE-success?style=for-the-badge) ![Operator](https://img.shields.io/badge/OPERATOR-HIMANSHU-blue?style=for-the-badge)
 
 
 ---
@@ -99,16 +99,60 @@ I have successfully completed the following tasks to launch the initial version:
 </details>
 
 <details>
-<summary><strong>🚧 V2: Support dynamic content and online ordering</strong></summary>
+<summary><strong>✅ V2: Support dynamic content and online ordering</strong></summary>
 
 <br>
 
-> **Business Goal**: Allow customers to place orders online.
-> **Technical Goal**: Deploy the web application and database on Amazon EC2.
-> **Status**: **PENDING**
+> **Business Goal**: Allow customers to place orders online and provide staff the ability to view submitted orders.
+> **Technical Goal**: Deploy a LAMP stack application on Amazon EC2, integrate with AWS Secrets Manager, and implement a Multi-Region Disaster Recovery strategy using AMIs.
+> **Status**: **COMPLETED**
 
-*   **Objective**: Transition from static hosting to dynamic compute.
-*   **Tech Stack**: Amazon EC2.
+#### ⚙️ TECHNICAL IMPLEMENTATION
+I have successfully completed the following tasks to launch the dynamic version of the website:
+
+**1. Environment Configuration (LAMP Stack)**
+*   **OS**: Amazon Linux (Red Hat derivative).
+*   **Web Server**: Apache HTTP Server (configured on port 8000).
+*   **Database**: MariaDB 10.5 (installed and enabled).
+*   **IDE**: Connected to VS Code Server running on the EC2 instance.
+*   **Permissions**: Configured file ownership (`chown`) and symlinks to allow editing web files directly from the IDE.
+
+**2. Application Deployment**
+*   Downloaded and extracted the café application source code and database scripts.
+*   Installed the **AWS SDK for PHP** to allow the application to interact with AWS services.
+*   **Secrets Management**:
+    *   Used `set-app-parameters.sh` to store sensitive configuration (DB credentials) in **AWS Secrets Manager**.
+    *   Configured the application to retrieve these secrets at runtime.
+*   **Database Setup**:
+    *   Ran `create-db.sh` to initialize the `cafe_db` schema and tables.
+    *   Verified database connectivity using the MySQL CLI.
+
+**3. Security & IAM**
+*   Analyzed the **IAM Role** (`CafeRole`) attached to the EC2 instance.
+*   Verified the role grants permission to read from Secrets Manager, resolving initial application permission errors.
+*   Configured **Security Groups** to allow inbound traffic on TCP port 8000 (Web) and 22 (SSH).
+
+**4. Multi-Region Expansion (Disaster Recovery)**
+*   **AMI Creation**: Created a custom Amazon Machine Image (`CafeServer`) from the fully configured development instance in `us-east-1`.
+*   **Production Deployment**:
+    *   Launched a new instance (`ProdCafeServer`) in the **Oregon Region (us-west-2)** using the custom AMI.
+    *   Configured the new instance with the `CafeRole` and appropriate Security Groups.
+*   **Region-Specific Configuration**:
+    *   Updated the application parameters in `us-west-2` to reflect the new region's public DNS.
+    *   Verified that the production site operates independently of the development site.
+
+#### 📸 VISUAL EVIDENCE
+> **1. Online Menu & Ordering**
+> ![Online Menu](placeholder_path_to_menu_screenshot.png)
+> *The dynamic menu allowing customers to place orders.*
+
+> **2. Order Confirmation**
+> ![Order Success](placeholder_path_to_order_success.png)
+> *Confirmation message after placing an order.*
+
+> **3. Multi-Region Instances**
+> ![EC2 Console](placeholder_path_to_ec2_console.png)
+> *Showing instances running in both N. Virginia and Oregon.*
 
 </details>
 
@@ -195,10 +239,9 @@ To replicate this project, ensure you have the following:
 .
 ├── README.md           # Project Documentation
 ├── v1-static-website/  # (Completed) Static assets for S3
-├── v2-dynamic-ec2/     # (Pending) EC2 UserData & Scripts
+├── v2-dynamic-ec2/     # (Completed) EC2 UserData & Scripts
 ├── v6-cloudformation/  # (Pending) IaC Templates
 └── assets/             # Architecture diagrams and screenshots
 ```
 
 ---
-
