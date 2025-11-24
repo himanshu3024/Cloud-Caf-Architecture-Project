@@ -3,13 +3,6 @@
 
 ![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws) ![Status](https://img.shields.io/badge/STATUS-V1%20COMPLETE-success?style=for-the-badge) ![Operator](https://img.shields.io/badge/OPERATOR-HIMANSHU-blue?style=for-the-badge)
 
-```bash
->_ SYSTEM BOOT SEQUENCE...
-> TARGET: "The Café" (Frank & Martha)
-> OPERATOR: Himanshu
-> OBJECTIVE: Digital Transformation & Scaling
-> CURRENT STATE: V1 ONLINE
-```
 
 ---
 
@@ -25,7 +18,7 @@ This repository serves as a master log of every architectural decision, configur
 ## 📖 SCENARIO & BACKGROUND
 
 ### ☕ The Business Case
-**Frank and Martha** are a husband-and-wife team who own and operate a small, beloved café in a large city, famous for its high-quality desserts and coffee. They are assisted by their daughter, **Sofía**, and their employee, **Himanshu** (a secondary school student).
+**Frank and Martha** are a husband-and-wife team who own and operate a small, beloved café in a large city, famous for its high-quality desserts and coffee. They are assisted by their daughter, **Sofía**, and their employee, **Himanshu** (a post grad student at George Brown College, Me basically).
 
 Despite their reputation among locals, the café lacks a marketing strategy and relies entirely on foot traffic and word-of-mouth. They have **zero web presence** and currently use **no cloud computing services**.
 
@@ -34,7 +27,7 @@ Sofía has proposed expanding community awareness to showcase what the café has
 *   Visual showcases of their desserts and coffee.
 *   Business details (location, hours, telephone number).
 
-**Himanshu** (You) has been tasked with leading this digital transformation.
+I have been tasked with leading this digital transformation.
 
 ---
 
@@ -51,7 +44,7 @@ This project follows the **AWS Well-Architected Framework**, focusing on five ke
 
 ## 🗺️ ARCHITECTURE ROADMAP
 
-### <details>
+<details>
 <summary><strong>✅ V1: Build a simple online presence for the café</strong></summary>
 
 <br>
@@ -105,7 +98,7 @@ I have successfully completed the following tasks to launch the initial version:
 
 </details>
 
-### <details>
+<details>
 <summary><strong>🚧 V2: Support dynamic content and online ordering</strong></summary>
 
 <br>
@@ -119,7 +112,7 @@ I have successfully completed the following tasks to launch the initial version:
 
 </details>
 
-### <details>
+<details>
 <summary><strong>🚧 V3: Reduce maintenance load and improve data security</strong></summary>
 
 <br>
@@ -133,7 +126,7 @@ I have successfully completed the following tasks to launch the initial version:
 
 </details>
 
-### <details>
+<details>
 <summary><strong>🚧 V4: Strengthen the security of the application</strong></summary>
 
 <br>
@@ -147,7 +140,7 @@ I have successfully completed the following tasks to launch the initial version:
 
 </details>
 
-### <details>
+<details>
 <summary><strong>🚧 V5: Handle higher traffic and achieve high availability</strong></summary>
 
 <br>
@@ -161,7 +154,7 @@ I have successfully completed the following tasks to launch the initial version:
 
 </details>
 
-### <details>
+<details>
 <summary><strong>🚧 V6: Automate deployments for consistency and multi-Region expansion</strong></summary>
 
 <br>
@@ -175,7 +168,7 @@ I have successfully completed the following tasks to launch the initial version:
 
 </details>
 
-### <details>
+<details>
 <summary><strong>🚧 V7: Add reporting while lowering maintenance, improving performance, and cutting costs</strong></summary>
 
 <br>
@@ -209,7 +202,3 @@ To replicate this project, ensure you have the following:
 
 ---
 
-```bash
->_ SYSTEM STANDBY...
->_ AWAITING NEXT COMMAND.
-```
