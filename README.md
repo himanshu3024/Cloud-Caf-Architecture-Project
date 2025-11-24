@@ -1,255 +1,104 @@
-# ☕ Cloud Café Architecture Project
+# PROJECT: CAFÉ CLOUD
+### *The Evolving Café Architecture*
 
-A complete journey of building and evolving a cloud-based café application on AWS, from a simple static website to a fully automated, scalable, and cost-optimized solution.
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws) ![Status](https://img.shields.io/badge/STATUS-V1%20COMPLETE-success?style=for-the-badge) ![Operator](https://img.shields.io/badge/OPERATOR-HIMANSHU-blue?style=for-the-badge)
 
-## 📋 Project Overview
-
-This project demonstrates the step-by-step evolution of a small business café application through seven distinct phases. Each version builds upon the previous one, introducing new AWS services and architectural best practices to solve real-world business challenges.
-
-**Key Focus Areas:**
-- Progressive cloud architecture design
-- Security and networking best practices
-- High availability and disaster recovery
-- Cost optimization and automation
-- Serverless computing
-
-## 🎯 Project Goals
-
-- Transform a basic website into a production-ready cloud application
-- Implement industry-standard security practices
-- Build resilient and scalable infrastructure
-- Automate deployment and management processes
-- Optimize operational costs while maintaining performance
-
-## 🏗️ Architecture Evolution
-
- small business
-
-**Technical Implementation:**
-- Host the website on Amazon S3
-
-**AWS Services Used:**
-- Amazon S3
-
-**Skills Demonstrated:**
-- Static website hosting
-- S3 bucket configuration
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-<details>
-<summary><b>Version 2: Dynamic Content & Online Ordering</b></summary>
-
-**Business Goal:** Update the website to support dynamic content and online ordering
-
-**Technical Implementation:**
-- Deploy web application and database on Amazon EC2
-
-**AWS Services Used:**
-- Amazon EC2
-
-**Skills Demonstrated:**
-- EC2 instance deployment
-- Database setup
-- Dynamic web application hosting
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-<details>
-<summary><b>Version 3: Managed Database Migration</b></summary>
-
-**Business Goal:** Reduce the effort to maintain the database and secure its data
-
-**Technical Implementation:**
-- Separate web and database layers
-- Migrate the database to Amazon RDS on a private subnet
-
-**AWS Services Used:**
-- Amazon EC2
-- Amazon RDS
-
-**Skills Demonstrated:**
-- Database migration
-- Network segmentation
-- Managed database services
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-<details>
-<summary><b>Version 4: Enhanced Security</b></summary>
-
-**Business Goal:** Enhance the security of the web application
-
-**Technical Implementation:**
-- Use Amazon VPC features to configure and secure public and private subnets
-
-**AWS Services Used:**
-- Amazon VPC
-- Security Groups
-- Network ACLs
-
-**Skills Demonstrated:**
-- VPC design and configuration
-- Public and private subnet architecture
-- Network security implementation
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-<details>
-<summary><b>Version 5: High Availability & Auto Scaling</b></summary>
-
-**Business Goal:** Ensure the website can handle increased traffic and remain highly available and resilient to failure
-
-**Technical Implementation:**
-- Add a load balancer
-- Implement auto scaling on EC2 instances
-- Distribute compute and database instances across two Availability Zones
-
-**AWS Services Used:**
-- Elastic Load Balancer (ELB)
-- Auto Scaling Groups
-- Multi-AZ RDS
-- CloudWatch
-
-**Skills Demonstrated:**
-- Load balancing configuration
-- Auto scaling policies
-- Multi-AZ architecture
-- High availability design
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-<details>
-<summary><b>Version 6: Infrastructure as Code</b></summary>
-
-**Business Goal:** Automate deployments so the café can consistently deploy, manage, and update resources across Regions
-
-**Technical Implementation:**
-- Build a version-controlled CloudFormation template to deploy the network and application layers
-- Deploy the CloudFormation stack to another Region
-
-**AWS Services Used:**
-- AWS CloudFormation
-- Multi-Region deployment
-
-**Skills Demonstrated:**
-- Infrastructure as Code (IaC)
-- CloudFormation template development
-- Version control integration
-- Multi-region deployment
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-<details>
-<summary><b>Version 7: Serverless Reporting</b></summary>
-
-**Business Goal:** Add reporting capabilities while reducing operational burden, improving performance, and reducing costs
-
-**Technical Implementation:**
-- Deploy Lambda functions that connect to Amazon RDS database
-- Generate reports based on a schedule
-
-**AWS Services Used:**
-- AWS Lambda
-- Amazon EventBridge/CloudWatch Events
-- Amazon RDS
-
-**Skills Demonstrated:**
-- Serverless architecture
-- Event-driven automation
-- Cost optimization
-- Lambda-RDS integration
-
-**Screenshots:**
-*[Screenshots will be added here]*
-
-</details>
-
-## 🛠️ Technologies & Services
-
-| Category | AWS Services |
-|----------|-------------|
-| **Compute** | EC2, Lambda, Auto Scaling |
-| **Storage** | S3 |
-| **Database** | RDS (Multi-AZ) |
-| **Networking** | VPC, Subnets, Security Groups, Load Balancer |
-| **Automation** | CloudFormation, EventBridge |
-| **Monitoring** | CloudWatch |
-
-## 📚 What You'll Learn
-
-- **Cloud Architecture Design:** Build scalable and resilient applications
-- **Security Best Practices:** Implement network segmentation and security controls
-- **High Availability:** Design multi-AZ architectures with load balancing
-- **Cost Optimization:** Transition from always-on to serverless where appropriate
-- **Infrastructure as Code:** Automate deployments using CloudFormation
-- **Serverless Computing:** Leverage Lambda for event-driven workloads
-
-## 🎓 Prerequisites
-
-- AWS Account (Free Tier eligible)
-- Basic understanding of web applications
-- Familiarity with cloud computing concepts
-
-## 📈 Project Progression
-
+```bash
+>_ SYSTEM BOOT SEQUENCE...
+> TARGET: "The Café" (Frank & Martha)
+> OPERATOR: Himanshu
+> OBJECTIVE: Digital Transformation & Scaling
+> CURRENT STATE: V1 ONLINE
 ```
-Static Website (S3)
-    ↓
-Dynamic App (EC2)
-    ↓
-Managed Database (RDS)
-    ↓
-Secure Network (VPC)
-    ↓
-High Availability (Load Balancer + Auto Scaling)
-    ↓
-Automation (CloudFormation)
-    ↓
-Serverless (Lambda)
-```
-
-## 🚀 Getting Started
-
-Each version of this project builds on the previous one. Start with Version 1 and progress sequentially through each phase. Detailed implementation steps and screenshots are available in each version's section above.
-
-## 📝 Documentation
-
-This project follows AWS best practices and aligns with the AWS Well-Architected Framework pillars:
-- Operational Excellence
-- Security
-- Reliability
-- Performance Efficiency
-- Cost Optimization
-
-## 🤝 Contributing
-
-This is a personal learning project documenting my journey through AWS cloud architecture. Feel free to use this as a reference for your own learning!
-
-## 📄 License
-
-This project is created for educational purposes as part of AWS Academy Cloud Architecting course.
 
 ---
 
-**Status:** 🚧 In Progress
+## 📡 MISSION PROTOCOL
+To evolve the café's infrastructure from a simple static page to a highly available, multi-region, automated cloud architecture.
 
-*Last Updated: November 2025*
+## 🗺️ ARCHITECTURE ROADMAP
+
+### <details><summary>✅ V1: Build a simple online presence for the café</summary>
+
+> **GOAL**: Host a static website on Amazon S3.
+> **STATUS**: **COMPLETED**
+
+#### ⚙️ TECHNICAL IMPLEMENTATION
+1.  **Infrastructure Provisioning**
+    *   Created S3 Bucket in `us-east-1` (N. Virginia).
+    *   Configured **Static Website Hosting** endpoint.
+
+2.  **Security Configuration**
+    *   *Public Access*: **ENABLED** (Unblocked public access settings).
+    *   *Access Control*: Configured **Bucket Policy** for anonymous `s3:GetObject` access.
+
+3.  **Deployment**
+    *   Uploaded `index.html` and assets (`css/`, `images/`).
+    *   Verified site integrity via public endpoint.
+
+#### 📸 VISUAL EVIDENCE
+| Site Preview | S3 Config | Policy |
+| :---: | :---: | :---: |
+| ![Site](placeholder_site.png) | ![Config](placeholder_config.png) | ![Policy](placeholder_policy.png) |
+
+</details>
+
+### <details><summary>🚧 V2: Support dynamic content and online ordering</summary>
+
+> **GOAL**: Deploy the web application and database on Amazon EC2.
+> **STATUS**: **PENDING**
+
+*   **Objective**: Transition from static hosting to dynamic compute.
+*   **Tech Stack**: Amazon EC2.
+</details>
+
+### <details><summary>🚧 V3: Reduce maintenance load and improve data security</summary>
+
+> **GOAL**: Separate the web and database layers. Migrate the database to Amazon RDS in a private subnet.
+> **STATUS**: **PENDING**
+
+*   **Objective**: Decouple architecture and enhance database security.
+*   **Tech Stack**: Amazon RDS, Private Subnets.
+</details>
+
+### <details><summary>🚧 V4: Strengthen the security of the application</summary>
+
+> **GOAL**: Use Amazon VPC features to configure and secure public and private subnets.
+> **STATUS**: **PENDING**
+
+*   **Objective**: Implement robust network isolation.
+*   **Tech Stack**: Amazon VPC, Public/Private Subnets.
+</details>
+
+### <details><summary>🚧 V5: Handle higher traffic and achieve high availability</summary>
+
+> **GOAL**: Add a load balancer, enable auto scaling on EC2 instances, and distribute compute and database resources across two Availability Zones.
+> **STATUS**: **PENDING**
+
+*   **Objective**: Ensure high availability and elasticity.
+*   **Tech Stack**: ELB (Load Balancer), Auto Scaling Groups, Multi-AZ.
+</details>
+
+### <details><summary>🚧 V6: Automate deployments for consistency and multi-Region expansion</summary>
+
+> **GOAL**: Build a version controlled CloudFormation template to deploy network and application layers. Deploy the CloudFormation stack to another Region.
+> **STATUS**: **PENDING**
+
+*   **Objective**: Infrastructure as Code (IaC) and Disaster Recovery.
+*   **Tech Stack**: AWS CloudFormation, Multi-Region.
+</details>
+
+### <details><summary>🚧 V7: Add reporting while lowering maintenance, improving performance, and cutting costs</summary>
+
+> **GOAL**: Deploy Lambda functions that connect to Amazon RDS and generate scheduled reports.
+> **STATUS**: **PENDING**
+
+*   **Objective**: Serverless automation and reporting.
+*   **Tech Stack**: AWS Lambda, Amazon RDS.
+</details>
+
+---
+
+```bash
+>_ END OF LOG
+```
