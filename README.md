@@ -1,5 +1,3 @@
-# Cloud-Caf-Architecture-Project
-
 # ☕ Cloud Café Architecture Project
 
 A complete journey of building and evolving a cloud-based café application on AWS, from a simple static website to a fully automated, scalable, and cost-optimized solution.
@@ -25,10 +23,7 @@ This project demonstrates the step-by-step evolution of a small business café a
 
 ## 🏗️ Architecture Evolution
 
-<details>
-<summary><b>Version 1: Static Website Hosting</b></summary>
-
-**Business Goal:** Build a static website for a small business
+ small business
 
 **Technical Implementation:**
 - Host the website on Amazon S3
