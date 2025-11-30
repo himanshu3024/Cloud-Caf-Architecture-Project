@@ -1,7 +1,32 @@
+<div align="center">
+
 # PROJECT: CAFÉ CLOUD
 ### *The Evolving Café Architecture*
 
-![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws) ![Status](https://img.shields.io/badge/STATUS-V4%20COMPLETE-success?style=for-the-badge) ![Operator](https://img.shields.io/badge/OPERATOR-HIMANSHU-blue?style=for-the-badge)
+![AWS](https://img.shields.io/badge/AWS-Cloud-orange?style=for-the-badge&logo=amazon-aws) ![Status](https://img.shields.io/badge/STATUS-PROJECT%20COMPLETE-success?style=for-the-badge) ![Operator](https://img.shields.io/badge/OPERATOR-HIMANSHU-blue?style=for-the-badge)
+
+</div>
+
+---
+
+<div align="center">
+
+### 🛠️ Technologies Used
+
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+![EC2](https://img.shields.io/badge/EC2-%23FF9900.svg?style=for-the-badge&logo=amazon-ec2&logoColor=white)
+![S3](https://img.shields.io/badge/S3-%23569A31.svg?style=for-the-badge&logo=amazon-s3&logoColor=white)
+![RDS](https://img.shields.io/badge/RDS-%23527FFF.svg?style=for-the-badge&logo=amazon-rds&logoColor=white)
+![Lambda](https://img.shields.io/badge/Lambda-%23FF9900.svg?style=for-the-badge&logo=aws-lambda&logoColor=white)
+![CloudFormation](https://img.shields.io/badge/CloudFormation-%23FF4F8B.svg?style=for-the-badge&logo=aws-cloudformation&logoColor=white)
+<br>
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+![MariaDB](https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![VS Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+</div>
 
 
 ---
@@ -12,6 +37,20 @@
 Starting from a humble **static website (V1)**, this project documents the iterative transformation of the café's infrastructure into a **dynamic, highly available, and fault-tolerant system**. The journey covers the migration to **EC2 compute (V2)**, database decoupling with **RDS (V3)**, network hardening via **VPC (V4)**, scaling with **ELB & ASG (V5)**, multi-region automation via **CloudFormation (V6)**, and finally, optimizing with **Serverless Lambda (V7)**.
 
 This repository serves as a master log of every architectural decision, configuration, and deployment step taken to modernize the business.
+
+## 📑 TABLE OF CONTENTS
+*   [Scenario & Background](#-scenario--background)
+*   [Technical Strategy](#-technical-strategy)
+*   [Architecture Roadmap](#-architecture-roadmap)
+*   [V1: Static Website (S3)](#-v1-creating-a-static-website-for-the-café)
+*   [V2: Dynamic Website (EC2)](#-v2-add-the-support-dynamic-content-and-online-ordering)
+*   [V3: Database Migration (RDS)](#-v3-migrating-a-database-to-amazon-rds)
+*   [V4: Network Hardening (VPC)](#-v4-creating-a-vpc-networking-environment-for-the-café)
+*   [V5: Scaling & HA (ELB/ASG)](#-v5-creating-a-scalable-and-highly-available-environment-for-the-café)
+*   [V6: Automation (CloudFormation)](#-v6-automating-infrastructure-deployment)
+*   [V7: Serverless (Lambda)](#-v7-implementing-a-serverless-architecture-for-the-café)
+*   [Key Learnings](#-key-learnings--challenges)
+*   [Future Roadmap](#-future-roadmap)
 
 ---
 
@@ -310,44 +349,267 @@ I have successfully completed the following tasks to secure the network environm
 </details>
 
 <details>
-<summary><strong>🚧 V5: Creating a Scalable and Highly Available Environment for the Café</strong></summary>
+<summary><strong>✅ V5: Creating a Scalable and Highly Available Environment for the Café</strong></summary>
 
 <br>
 
 > **Business Goal**: Ensure the website stays online during traffic spikes and server failures.
 > **Technical Goal**: Add a load balancer, enable auto scaling on EC2 instances, and distribute compute and database resources across two Availability Zones.
-> **Status**: **PENDING**
+> **Status**: **COMPLETED**
 
-*   **Objective**: Ensure high availability and elasticity.
-*   **Tech Stack**: ELB (Load Balancer), Auto Scaling Groups, Multi-AZ.
+#### 📖 SCENARIO
+The café will soon be featured on a famous TV food show. When the show airs, Sofía and Himanshu anticipate that the café’s web server will experience a temporary spike in the number of users—perhaps even up to tens of thousands of users. Currently, the café’s web server is deployed in one Availability Zone, and Sofía and Himanshu are worried that the website won’t be able to handle the expected increase in traffic. They want to ensure that their customers have a great experience when they visit the website and that they don’t experience any issues, such as lags or delays in placing orders.
+
+To ensure this experience, the website must be responsive, able to scale both up and down to meet fluctuating customer demand, and be highly available. Instead of overloading a single server, the architecture must distribute customer order requests across multiple application servers so it can handle the increase in demand.
+
+#### ⚙️ TECHNICAL IMPLEMENTATION
+![Architecture Diagram](V5/architectural%20diagram/module-10-challenge-lab-starting-architecture.png)
+
+I have successfully completed the following tasks to implement high availability and scalability:
+
+**1. Inspecting the Environment**
+*   Evaluated the current lab environment, including the VPC and network setup.
+*   Verified security group ports and internet connectivity for existing instances.
+
+**2. Network Updates (Multi-AZ)**
+*   **NAT Gateway**: Created a NAT Gateway in the Public Subnet of the second Availability Zone to allow private instances to access the internet.
+*   **Routing**: Configured route tables to send internet-bound traffic from instances in Private Subnet 2 to the new NAT Gateway.
+
+**3. Launch Template Creation**
+*   **Source AMI**: Used the `Cafe WebServer Image` created from the previous configuration.
+*   **Instance Type**: `t2.micro`.
+*   **Key Pair**: Created and associated a new key pair.
+*   **Security Group**: Attached `CafeSG`.
+*   **IAM Role**: Attached `CafeRole` to grant necessary permissions.
+*   **Tags**: Added `Name: webserver` tag for identification.
+
+**4. Auto Scaling Group (ASG)**
+*   **Launch Template**: Used the template created above.
+*   **VPC & Subnets**: Configured to use Private Subnet 1 and Private Subnet 2 for high availability.
+*   **Capacity**:
+    *   Desired: 2
+    *   Min: 2
+    *   Max: 6
+*   **Scaling Policy**: Implemented Target Tracking scaling policy based on **Average CPU Utilization** (Target: 25%) with a 60-second warmup.
+
+**5. Load Balancer (ALB)**
+*   **Type**: HTTP Application Load Balancer.
+*   **Subnets**: Deployed in the two Public Subnets.
+*   **Security Group**: Created a new SG allowing HTTP traffic from anywhere (`0.0.0.0/0`).
+*   **Target Group**: Created a new target group and associated it with the Auto Scaling Group.
+*   **Health Checks**: Configured to ensure traffic is only sent to healthy instances.
+
+**6. Testing & Verification**
+*   **Load Balancing**: Accessed the application via the Load Balancer's DNS name (`/cafe`) and verified it loads correctly.
+*   **Auto Scaling**:
+    *   Connected to a web server instance via AWS Systems Manager Session Manager.
+    *   Installed and ran `stress` tool to spike CPU usage (`stress --cpu 1 --timeout 600`).
+    *   Observed the Auto Scaling Group triggering a scale-out event, launching new instances to handle the load.
+
+#### 📸 VISUAL EVIDENCE
+> **1. NAT Gateway Creation**
+> ![NAT Gateway](V5/screenshots/Screenshot%201%20-%20Created%20NAT%20Gateway.png)
+> *NAT Gateway created for the second Availability Zone.*
+
+> **2. Route Table Configuration**
+> ![Route Table](V5/screenshots/Screenshot%202%20-%20Configured%20the%20network%20to%20send%20internet-bound%20traffic%20from%20instances%20in%20Private%20Subnet%202%20to%20the%20NAT%20gateway.png)
+> *Routing internet traffic from Private Subnet 2 to the NAT Gateway.*
+
+> **3. Auto Scaling Group**
+> ![ASG](V5/screenshots/Screenshot%203%20-%20Created%20New%20Auto%20Scaling%20Group%20using%20webserver%20Launch%20Template.png)
+> *New Auto Scaling Group configured with the webserver Launch Template.*
+
+> **4. Load Balancer Security Group**
+> ![ALB SG](V5/screenshots/Screenshot%204%20-%20New%20security%20group%20that%20allows%20HTTP%20traffic%20from%20anywhere.png)
+> *Security Group allowing public HTTP access to the Load Balancer.*
+
+> **5. Target Group**
+> ![Target Group](V5/screenshots/Screenshot%205%20-%20New%20Target%20Group.png)
+> *Target Group for routing traffic to ASG instances.*
+
+> **6. Application Load Balancer**
+> ![ALB](V5/screenshots/Screenshot%206%20-%20New%20Load%20Balancer.png)
+> *The active Application Load Balancer.*
+
+> **7. Stress Testing**
+> ![Stress Test](V5/screenshots/Screenshot%207%20-%20Opened%20a%20webserver%20and%20put%20some%20load%20on%20it.png)
+> *Generating CPU load on a web server instance.*
+
+> **8. Scale-Out Event**
+> ![Scale Out](V5/screenshots/Screenshot%208%20-%20New%20webserver%20launched%20based%20on%20Auto-Scaling%20Policy.png)
+> *Auto Scaling Group launching a new instance in response to high CPU.*
 
 </details>
 
 <details>
-<summary><strong>🚧 V6: Automating Infrastructure Deployment</strong></summary>
+<summary><strong>✅ V6: Automating Infrastructure Deployment</strong></summary>
 
 <br>
 
 > **Business Goal**: Quickly launch the café website in new regions as the business expands globally.
 > **Technical Goal**: Build a version controlled CloudFormation template to deploy network and application layers. Deploy the CloudFormation stack to another Region.
-> **Status**: **PENDING**
+> **Status**: **COMPLETED**
 
-*   **Objective**: Infrastructure as Code (IaC) and Disaster Recovery.
-*   **Tech Stack**: AWS CloudFormation, Multi-Region.
+#### 📖 SCENARIO
+Up to this point, the café staff members have created their Amazon Web Services (AWS) resources and manually configured their applications mostly by using the AWS Management Console. This approach worked well as a way for the café to get started with a web presence quickly. However, the staff members are finding it challenging to replicate their deployments to new AWS Regions so that they can support new café locations in multiple countries. They would also like to have separate development and production environments that reliably have matching configurations.
+
+In this challenge lab, I took on the role of Sofía to automate the café's deployments and replicate them to another AWS Region using Infrastructure as Code (IaC).
+
+#### ⚙️ TECHNICAL IMPLEMENTATION
+![Starting Architecture](V6/architecture/start-arch.png)
+
+I have successfully completed the following tasks to automate the infrastructure:
+
+**1. Connecting to the IDE**
+*   Connected to the AWS Cloud9/VS Code IDE environment running on an EC2 instance to perform development tasks.
+
+**2. Creating a CloudFormation Template (S3)**
+*   Created a CloudFormation template `S3.yaml` from scratch to define an Amazon S3 bucket.
+*   Deployed the stack using the AWS CLI: `aws cloudformation create-stack`.
+*   **Architecture**:
+    ![Task 2 Architecture](V6/screenshots/Task%202%20-%20Architecture%20S3stack.png)
+
+**3. Configuring the Bucket as a Website**
+*   Updated `S3.yaml` to configure the bucket for Static Website Hosting.
+*   Added a Bucket Policy for public read access.
+*   Updated the stack using `aws cloudformation update-stack`.
+*   Uploaded website assets to the bucket using AWS CLI.
+
+**4. Version Control with CodeCommit**
+*   Cloned the existing `CFTemplatesRepo` from AWS CodeCommit to the local IDE.
+*   Used Git to manage version control for the CloudFormation templates.
+
+**5. Creating Network Layer with CI/CD**
+*   Created `cafe-network.yaml` to define the VPC, Subnets, and Internet Gateway.
+*   Pushed the template to CodeCommit, which triggered the `CafeNetworkPipeline`.
+*   The pipeline automatically deployed the CloudFormation stack.
+*   **Pipeline Architecture**:
+    ![Pipeline Role](V6/screenshots/Pipeline%20role%20-%20code-pipeline.png)
+
+**6. Updating the Network Stack**
+*   Modified `cafe-network.yaml` to add **Outputs** (Exporting `SubnetID` and `VpcID`).
+*   Pushed changes to CodeCommit, triggering an automatic stack update via CodePipeline.
+
+**7. Creating the Application Stack**
+*   Created `cafe-app.yaml` to define the EC2 instance, Security Group, and UserData script.
+*   Used `Fn::ImportValue` to reference the exported network resources from the network stack.
+*   Configured parameters for Instance Type and AMI ID.
+*   Pushed to CodeCommit to trigger the `CafeAppPipeline` and deploy the application.
+
+**8. Duplicating Resources to Another Region**
+*   **Network**: Used AWS CLI to deploy the `cafe-network.yaml` stack to the `us-west-2` (Oregon) region.
+*   **Application**: Used the CloudFormation Console in `us-west-2` to deploy the `cafe-app.yaml` stack.
+*   **Result**: Successfully replicated the entire café infrastructure in a second region with minimal manual effort.
+
+#### 📸 VISUAL EVIDENCE
+> **1. S3 File Configuration**
+> ![S3 Config](V6/screenshots/Screenshot%201%20-%20S3%20File%20Configuration.png)
+> *CloudFormation template defining the S3 bucket.*
+
+> **2. S3 API Operations**
+> ![S3 API](V6/screenshots/Screenshot%202%20-%20DOwnloaded%20files%20using%20AWS%20S3%20API.png)
+> *Downloading and interacting with files using AWS CLI.*
+
+> **3. Stack Output**
+> ![Stack Output](V6/screenshots/Screenshot%203%20-%20Output%20of%20Updated%20Stack%20in%20Cloud%20Formation.png)
+> *CloudFormation stack outputs showing the website URL.*
+
+> **4. Git Operations**
+> ![Git Commands](V6/screenshots/Screenshot%204%20-%20Git%20Commands%20for%20Cafe-Network%20File%20YAML.png)
+> *Committing and pushing the network template to CodeCommit.*
+
+> **5. CodePipeline Success**
+> ![Pipeline Success](V6/screenshots/Screenshot%205%20-%20CodePipeline%20Succesfull.png)
+> *Successful execution of the CI/CD pipeline.*
 
 </details>
 
 <details>
-<summary><strong>🚧 V7: Implementing a Serverless Architecture for the Café</strong></summary>
+<summary><strong>✅ V7: Implementing a Serverless Architecture for the Café</strong></summary>
 
 <br>
 
 > **Business Goal**: Generate automated business reports without managing servers.
 > **Technical Goal**: Deploy Lambda functions that connect to Amazon RDS and generate scheduled reports.
-> **Status**: **PENDING**
+> **Status**: **COMPLETED**
 
-*   **Objective**: Serverless automation and reporting.
-*   **Tech Stack**: AWS Lambda, Amazon RDS.
+#### 📖 SCENARIO
+The café's business is thriving. Frank and Martha want to get daily sales reports for products that are sold from the café's website. They will use this report to plan ingredient orders and monitor the impact of product promotions.
+
+Sofía and Himanshu's initial idea was to use one of the EC2 web server instances to generate the report via a cron job. However, this reduced the performance of the web server. To avoid slowing down the customer-facing application and to avoid the cost of running a separate dedicated EC2 instance 24/7, they decided to implement a **serverless architecture** using AWS Lambda.
+
+In this lab, I took on the role of Sofía to implement the daily report code as a Lambda function, triggered by a scheduled event.
+
+#### ⚙️ TECHNICAL IMPLEMENTATION
+![Final Architecture](V7/architecture%20diagram/20-lab-mod-14-challenge-final-architecture.png)
+
+I have successfully completed the following tasks to implement the serverless reporting solution:
+
+**1. Source Code Preparation**
+*   Downloaded and extracted the source code for:
+    *   `salesAnalysisReportDataExtractor`: Extracts data from the database.
+    *   `salesAnalysisReport`: Generates and sends the email report.
+
+**2. Data Extractor Lambda Function**
+*   **Security**: Created `LambdaSG` allowing all outbound traffic.
+*   **Database Access**: Updated the RDS `DatabaseSG` to allow inbound MySQL/Aurora traffic from `LambdaSG`.
+*   **Function Creation**:
+    *   **Name**: `salesAnalysisReportDataExtractor`
+    *   **Runtime**: Python 3.11
+    *   **VPC**: Deployed in `Lab VPC` (Private Subnets 1 & 2) to access the RDS instance.
+    *   **Role**: `salesAnalysisReportDERole`
+
+**3. Sales Analysis Report Lambda Function**
+*   **Function Creation**:
+    *   **Name**: `salesAnalysisReport`
+    *   **Runtime**: Python 3.11
+    *   **Role**: `salesAnalysisReportRole`
+    *   **Code**: Uploaded `salesAnalysisReport.zip`.
+
+**4. SNS Topic Configuration**
+*   **Topic**: Created a Standard SNS Topic named `SalesReportTopic`.
+*   **Integration**: Updated the `salesAnalysisReport` Lambda environment variables to include the `topicARN`.
+
+**5. Email Subscription**
+*   Created an email subscription to the `SalesReportTopic`.
+*   Confirmed the subscription to receive notifications.
+
+**6. Testing**
+*   Configured a test event for the `salesAnalysisReport` Lambda function.
+*   Executed the test and verified that an email report was received.
+
+**7. Automation with EventBridge**
+*   **Rule**: Created an Amazon EventBridge rule to trigger the `salesAnalysisReport` Lambda function daily.
+*   **Schedule**: Configured using a cron expression to run at a specific time.
+
+#### 📸 VISUAL EVIDENCE
+> **1. Lambda Code**
+> ![Lambda Code](V7/screenshots/Screenshot%201%20-%20Lambda%20Function%20Python%20Code.png)
+> *Python code for the Lambda function.*
+
+> **2. Data Extractor Function**
+> ![Data Extractor](V7/screenshots/Screenshot%202%20-%20New%20DataExtractor%20Lambda%20function.png)
+> *Configuration of the DataExtractor Lambda function.*
+
+> **3. Report Generator Function**
+> ![Report Generator](V7/screenshots/Screenshot%203%20-%20SalesAnalysisReport%20Lambda%20function.png)
+> *Configuration of the SalesAnalysisReport Lambda function.*
+
+> **4. SNS Topic**
+> ![SNS Topic](V7/screenshots/Screenshot%204%20-%20SNS%20New%20Topic.png)
+> *SNS Topic created for sending reports.*
+
+> **5. Subscription**
+> ![Subscription](V7/screenshots/Screenshot%205%20-%20New%20Subscription.png)
+> *Email subscription confirmed for the SNS topic.*
+
+> **6. Testing**
+> ![Testing](V7/screenshots/Screenshot%206%20-%20Testing%20the%20Lambda%20Function.png)
+> *Successful execution of the Lambda test event.*
+
+> **7. Final Report**
+> ![Report Email](V7/screenshots/Screenshot%207%20-%20Received%20the%20Report%20on%20my%20Email.png)
+> *Daily sales report received via email.*
 
 </details>
 
@@ -363,10 +625,45 @@ To replicate this project, ensure you have the following:
 ```
 .
 ├── README.md           # Project Documentation
-├── v1-static-website/  # (Completed) Static assets for S3
-├── v2-dynamic-ec2/     # (Completed) EC2 UserData & Scripts
-├── v6-cloudformation/  # (Pending) IaC Templates
-└── assets/             # Architecture diagrams and screenshots
+├── V1/                 # Static Website (S3)
+├── V2/                 # Dynamic Website (EC2)
+├── V3/                 # Database Migration (RDS)
+├── V4/                 # Network Hardening (VPC)
+├── V5/                 # Scaling & High Availability (ELB/ASG)
+├── V6/                 # Infrastructure Automation (CloudFormation)
+├── V7/                 # Serverless Reporting (Lambda/SNS)
+├── assets/             # Project Assets
+└── code files/         # Application Source Code & Scripts
 ```
+
+## 🚀 GETTING STARTED / USAGE
+To explore this project:
+1.  **Navigate by Version**: Each folder (`V1`, `V2`, etc.) represents a specific stage in the architecture's evolution.
+2.  **Review Configuration**: Inside each folder, you will find scripts, CloudFormation templates, or screenshots relevant to that stage.
+3.  **Follow the Journey**: Read the "Technical Implementation" sections above to understand *why* and *how* changes were made.
+
+## 💡 KEY LEARNINGS & CHALLENGES
+*   **Infrastructure as Code (IaC)**: Moving from manual console clicks to CloudFormation templates (V6) was a game-changer for consistency and disaster recovery.
+*   **State Management**: Handling database state during migration (V3) required careful planning to avoid data loss.
+*   **Security First**: Implementing VPCs and private subnets (V4) taught me the importance of network isolation and least privilege.
+*   **Scalability**: Configuring Auto Scaling Groups (V5) demonstrated how to handle traffic spikes cost-effectively.
+
+
+
+---
+
+<div align="center">
+
+### 👤 AUTHOR & CONTACT
+
+**Himanshu Gandhi**
+<br>
+*Cloud Learner*
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/himanshu-gandhi-891204160/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/himanshu3024)
+[![Portfolio](https://img.shields.io/badge/Portfolio-FF5722?style=for-the-badge&logo=html5&logoColor=white)](https://calm-ocean-080a5230f.1.azurestaticapps.net/)
+
+</div>
 
 ---
